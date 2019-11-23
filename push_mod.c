@@ -152,11 +152,12 @@ struct module_exports exports= {
     0,          /* exported statistics */
     0,          /* exported MI functions */
     0,          /* exported pseudo-variables */
-    0,          /* extra processes, depricated? */
+//    0,          /* extra processes, depricated? */
     mod_init,   /* initialization module */
-    0,          /* response function */
-    destroy,    /* destroy function */
-    child_init  /* per-child init function */
+//    0,          /* response function */
+    child_init,  /* per-child init function */
+    destroy    /* destroy function */
+    // child_init  /* per-child init function */
 };
 
 static int pipefd[2];
@@ -285,7 +286,7 @@ static int mod_init( void )
 
     apns->read_timeout = apns_read_timeout;
 
-    if ((push_db) && (-1 == push_check_db(apns, push_db, push_table)))
+    if (-1 == push_check_db(apns, push_db, push_table))
     {
         LM_ERR("Cannot connect database, failed");
         return -1;

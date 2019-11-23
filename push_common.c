@@ -385,7 +385,8 @@ int push_check_db(PushServer* apns, const char* push_db, const char* push_table)
 
     if (push_db == NULL)
     {
-        return 0;
+	LM_ERR("No push_db param provided\n");
+        return -1;
     }
 
     db_url.s = (char*)push_db;
