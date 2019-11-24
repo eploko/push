@@ -51,10 +51,10 @@ static int  print_payload_msg(APNS_Payload* payload, char* buff, size_t size)
     int printed = payload->custom_param == NULL ?
         snprintf(buff, size, 
 //                           "{\"aps\":{\"alert\":\"%s\"},\"call-id\":\"%s\"}",
-                 "{\"aps\":{\"alert\":{\"body\":\"%s\"}}}",  
+                 "{\"aps\":{\"alert\":{%s}}}",  
                  payload->alert):
         snprintf(buff, size, 
-                 "{\"aps\":{\"alert\":{\"body\":\"%s\"}}, %s}",  
+                 "{\"aps\":{\"alert\":{%s}}, %s}",  
                  payload->alert, payload->custom_param);
 
 
